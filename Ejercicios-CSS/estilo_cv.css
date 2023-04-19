@@ -1,0 +1,23 @@
+div{
+    border: 2px solid rgb(152, 136, 167);
+    border-radius: 15px;
+    margin: 20px 25px;
+    padding: 18px;
+    background-color: rgba(115, 115, 182, 0.3);
+    box-shadow: 5px 7px #bebaba;
+}
+#foto{
+
+    width: 100px;
+    float: left;
+    border-radius: 50%;
+}
+
+.cuerpopagina{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #7c7c7c, #b4b4b4);
+}
+h1, h2, h3{
+    text-shadow: 2px 5px #696666;
+}
