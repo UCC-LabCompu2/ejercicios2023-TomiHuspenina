@@ -4,8 +4,10 @@
  * @param {string} id - Id del input del formulario
  * @param {string} valor - Valor ingresado por el usuario
  */
-function conversorUnidades(id, valor){
 
+let conversorUnidades = (id, valor) => {
+
+    //creacion de valores
 let met, pul, pie, yar;
 
 if(isNaN(valor)){
@@ -17,29 +19,29 @@ if(isNaN(valor)){
 
     alert("el valor ingresado no es un numero");
 
-}else  if(id=="metro"){
-    
+}else  if(id==="metro"){
+    //conversor de metros
     met = valor;
     yar = 1.09361*valor;
     pie = 3.28084*valor;
     pul = 39.3701*valor;
 
-} else if (id== "pulgada") {
-
+} else if (id==="pulgada") {
+    //conversor de pulgadas
     pul = valor;
     met = valor * 0.0254;
     pie = valor * 0.08333;
     yar = valor * 0.027778;
 
-} else if (id== "pie") {
-
+} else if (id==="pie") {
+    //conversor de pies
     pie = valor;
     met = valor * 0.3048;
     pul = valor * 12;
     yar = valor * 0.333333;
 
-} else if (id== "yarda") {
-
+} else if (id==="yarda") {
+    //conversor de yarda
     yar = valor;
     met = valor * 0.9144;
     pul = valor * 36;
@@ -62,12 +64,45 @@ document.lasUnidades.unid_pulgada.value = pul;
  * @param {string} valor - Valor ingresado por el usuario
  */
 
-function convertirGR(id){
-    if(id=="grados"){
-        let gr = document.getElementById("grados").value;
-        document.getElementById("radianes").value = (gr*Math.PI)/180 ;
+let convertirGR = (id) =>{
+    let gr, rad;
+    if(id==="grados"){
+        gr = document.getElementById("grados").value;
+        rad = (gr*Math.PI)/180 ;
     }else{
-        let rad = document.getElementById("radianes").value;
-        document.getElementById("grados").value = rad*180/Math.PI;
+        rad = document.getElementById("radianes").value;
+        gr = rad*180/Math.PI;
     }
+
+    document.getElementById("radianes").value = rad ;
+    document.getElementById("grados").value = gr;
+}
+
+/**
+ * Descripción: permite visualizar u ocultar un div de la pagina
+ * @method mostrar_ocultar
+ * @param {string} valor - Valor asociado a un radio button del html
+ */
+
+let mostrar_ocultar=(valor) => {
+    if(valor==="val_mostrar"){
+        document.getElementsByName("unDiv")[0].style.display = 'block';
+    }else{
+        document.getElementsByName("unDiv")[0].style.display= 'none';
+    }
+}
+
+/**
+ * Descripción: suma dos valores ingresados por el usuario
+ * @method sumar
+ */
+
+let sumar = () => {
+    let num1, num2, res;
+    num1=document.getElementById("nums1").value;
+    num2=document.getElementById("nums2").value;
+
+    res=Number(num1)+Number(num2);
+
+    document.getElementById("totalS").value= res;    
 }
