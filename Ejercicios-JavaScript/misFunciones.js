@@ -165,3 +165,29 @@ let tomarDatosLS = () =>{
 
     document.getElementById("dist").value='${distancia} ${unidad}';
 }
+
+
+
+
+let dibujarCirculoCuadrado = () =>{
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const anchoMax=canvas.Width;
+    const alturaMax=canvas.Height;
+
+    ctx.beingPath();
+    ctx.fillStyle= "#851414";
+    ctx.arc(anchoMax/2, alturaMax/2, 100, 0, 2*Math.PI);  
+    ctx.stroke();
+    ctx.fill()
+    ctx.closePath();
+
+    const margen = 8;
+    ctx.beingPath();
+    ctx.fillStyle= "#1b73";
+    ctx.arc(0+margen, alturaMax-100-margen, 150, 100);  
+    ctx.fill()
+    ctx.stroke();
+    ctx.closePath();
+}
