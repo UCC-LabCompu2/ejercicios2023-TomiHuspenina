@@ -10,6 +10,10 @@ let conversorUnidades = (id, valor) => {
     //creacion de valores
 let met, pul, pie, yar;
 
+if(valor.includes(",")){
+   valor = valor.replace(".");
+}
+
 if(isNaN(valor)){
     
     met = " ";
@@ -50,12 +54,16 @@ if(isNaN(valor)){
 }
 
 //asignacion de los valores 
-document.lasUnidades.unid_metro.value = met;
-document.lasUnidades.unid_yarda.value = yar;
-document.lasUnidades.unid_pie.value = pie;
-document.lasUnidades.unid_pulgada.value = pul;
+document.lasUnidades.unid_metro.value = math.round (met*100)/100;
+document.lasUnidades.unid_yarda.value = math.round (yar*100)/100;
+document.lasUnidades.unid_pie.value = pie.toFixed(2);
+document.lasUnidades.unid_pulgada.value = pul.toFixed(2);
   
 }
+
+
+
+
 
 /**
  * Descripción: permite convertir grados a radianes y viceversa
@@ -78,6 +86,10 @@ let convertirGR = (id) =>{
     document.getElementById("grados").value = gr;
 }
 
+
+
+
+
 /**
  * Descripción: permite visualizar u ocultar un div de la pagina
  * @method mostrar_ocultar
@@ -92,6 +104,10 @@ let mostrar_ocultar=(valor) => {
     }
 }
 
+
+
+
+
 /**
  * Descripción: suma dos valores ingresados por el usuario
  * @method sumar
@@ -104,5 +120,48 @@ let sumar = () => {
 
     res=Number(num1)+Number(num2);
 
-    document.getElementById("totalS").value= res;    
+    document.getElementById("totalS").innerHTML= res;    
+}
+
+
+
+let generarUrl = () =>{
+    const dist = document.getElementById("distancia").value;
+    const unid = document.getElementsByName("unidades")[0].value;
+
+    console.log(dist);
+    console.log(unid);
+
+    const urlComp = 'segundaWeb.html#${dist]#${unid}';
+
+    window.open(urlComp, "_self");
+}
+
+
+let cargarValores = () =>{
+    let urlCompleta = window.location.href;
+    urlCompleta = urlCompleta.split("#");
+    
+    const distancia = urlCompleta[1];
+    const unidad = urlCompleta[2];
+    document.getElementById("dist").value='${distancia} ${unidad}';
+}
+
+
+
+let guardarDatosLS = () =>{
+    const dist = document.getElementById("distancia").value;
+    const unid = document.getElementsByName("unidades")[0].value;
+
+    localStorage.setItem("distanciaLS", dist);
+    localStorage.setItem("unidadLS", unid);
+    window.open("segudnaWeb1.html")
+}
+
+
+let tomarDatosLS = () =>{
+    const cant = localStorage.getItem("distanciaLS");
+    const unid = localStorage.getItem("unidadLS");
+
+    document.getElementById("dist").value='${distancia} ${unidad}';
 }
